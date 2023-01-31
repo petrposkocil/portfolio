@@ -586,6 +586,17 @@ z-index: 0
 }
 
 /*---------------------------------------
+  MAP CASE
+-----------------------------------------*/
+#map-case {
+min-height: 600px;
+border-radius: var(--border-radius-small);
+margin: 2em;
+position: relative;
+z-index: 0
+}
+
+/*---------------------------------------
   ANIMATED TILES
 -----------------------------------------*/
 

@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="description" content="">
+        <meta name="author" content="TemplateMo">
+
+        <title>Portfolio Petr Poskocil</title>
+        <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+
+        <!-- CSS FILES -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/TweenMax.min.js"></script>
+
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <link href="css/bootstrap-icons.css" rel="stylesheet">
+
+        <link href="css/magnific-popup.css" rel="stylesheet">
+
+        <link href="css/portfolio-style.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
+
+        <style>
+        #container-slider {
+          position: relative;
+          width: 900px;
+          height: 600px;
+          border: 2px
+          solid white;
+        }
+
+        #container-slider .img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-size: 900px 100%;
+        }
+
+        #container-slider .slider {
+          position: absolute;
+          -webkit-appearance: none;
+          appearance: none;
+          width: 100%;
+          height: 100%;
+          background: rgba(242, 242, 242, 0.1);
+          outline: none;
+          margin: 0;
+          transition: all 0.2s;
+          display: flex;
+          justify-content: left;
+          align-items: left;
+        }
+        #container-slider .slider:hover {
+          background: rgba(242, 242, 242, 0.1);
+        }
+        #container-slider .slider::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 0;
+          height: 600px;
+          background: white;
+          cursor: pointer;
+        }
+        #container-slider .slider::-moz-range-thumb {
+          width: 0x;
+          height: 600px;
+          background: white;
+          cursor: pointer;
+        }
+        #container-slider .slider-button {
+          pointer-events: none;
+          position: absolute;
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          background-color: white;
+          left: calc(50% - 18px);
+          top: calc(50% - 18px);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        #container-slider .slider-button:after {
+          content: "";
+          padding: 3px;
+          display: inline-block;
+          border: solid #5D5D5D;
+          border-width: 0 2px 2px 0;
+          transform: rotate(-45deg);
+        }
+        #container-slider .slider-button:before {
+          content: "";
+          padding: 3px;
+          display: inline-block;
+          border: solid #5D5D5D;
+          border-width: 0 2px 2px 0;
+          transform: rotate(135deg);
+        }
+        </style>
+    </head>
+
+    <body>
+        <section class="preloader">
+            <div class="spinner">
+                <span class="spinner-rotate"></span>
+            </div>
+        </section>
+        <div class="container">
+          <h1 style="margin: 0.5em;">Case study: determining the best locations for a football stadium in Prague</h1>
+        </div>
+        <div class="container">
+            <div class="row">
+
+              <div class="col-lg-8">
+                  <div class='container' id="container-slider">
+                    <div class='img background-img' style="background-image: url('images/case/remote-sensing.png');"></div>
+                    <div class='img foreground-img' style="background-image: url('images/case/sentinel.png');width: 50%;"></div>
+                    <input type="range" min="1" max="100" value="50" class="slider" name='slider' id="slider">
+                    <div class='slider-button'></div>
+                  </div>
+              </div>
+
+              <div class="col-lg-4" style="margin-top: 3em;">
+                <h3 style="margin-left: 1em;">False Color Urban RGB Composite</h1>
+                <p style="margin-left: 2em;">
+                  Data Source: Sentinel-2
+                </p>
+                <p style="margin-left: 2em;">
+                  This composite is used to visualize urbanized areas more clearly. Vegetation is visible in shades of green, while urbanized areas are represented by white, grey, or purple. [<a target="_blank" href="https://custom-scripts.sentinel-hub.com/sentinel-2/false-color-urban-rgb/">1</a>]
+                </p>
+                <p style="margin-left: 2em;">
+                  The composite:
+                  [2.5 * B12, 2.5 * B11, 2.5 * B4]
+                </p>
+                <ul style="margin-left: 2em;">
+                  <li>Band 4 - Red	0.665 (µm)</li>
+                  <li>Band 11 - SWIR 1.610 (µm)</li>
+                  <li>Band 12 - SWIR 2.190 (µm)</li>
+                </ul>
+              </div>
+
+            </div>
+        </div>
+        <div class="container">
+          <div class="col-12">
+              <div id="map-case"></div>
+          </div>
+        </div>
+
+        <footer class="site-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-12">
+                        <div class="copyright-text-wrap">
+                            <p class="mb-0">
+                                <span class="copyright-text">Copyright © <script>document.write(new Date().getFullYear())</script> <a href="#">Petr Poskocil</a></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- JAVASCRIPT FILES -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/slider.js"></script>
+        <script src="js/jquery.sticky.js"></script>
+        <script src="js/jquery.magnific-popup.min.js"></script>
+        <script src="js/magnific-popup-options.js"></script>
+        <script src="js/custom.js"></script>
+        <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+        <script src="js/map-case.js"></script>
+        <script src="js/tiles.js"></script>
+    </body>
+</html>
