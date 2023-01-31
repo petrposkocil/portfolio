@@ -107,6 +107,10 @@
           border-width: 0 2px 2px 0;
           transform: rotate(135deg);
         }
+        hr.solid {
+          border-top: 3px solid #bbb;
+          margin: 4em ;
+        }
         </style>
     </head>
 
@@ -116,46 +120,212 @@
                 <span class="spinner-rotate"></span>
             </div>
         </section>
+
         <div class="container">
           <h1 style="margin: 0.5em;">Case study: determining the best locations for a football stadium in Prague</h1>
+          <img src='images/case/thumb-case.png' style='width:100%; border-radius: var(--border-radius-small);'>
+        </div>
+        <hr class="solid">
+
+        <div class="container">
+          <h3 style="margin: 0.5em;">: Aim</h3>
         </div>
         <div class="container">
-            <div class="row">
+          <p>Case study: determining the best locations for a football stadium in a city of your choice</p>
+          <ul>
+            <li>Extracting geometrical data of buildings, streets or other infrastructure from a remote sensing image</li>
+            <li>Extracting location data of people or activities from big data sources (e.g. social media, traffic data, google API)</li>
+            <li>Based on 2-3 criteria, suggest a couple of locations for a football stadium</li>
+            <li>Visualize the output on a map and diagram</li>
+            <li>Visualize the output on a web-based interface</li>
+          </ul>
+        </div>
+        <hr class="solid">
 
-              <div class="col-lg-8">
-                  <div class='container' id="container-slider">
-                    <div class='img background-img' style="background-image: url('images/case/remote-sensing.png');"></div>
-                    <div class='img foreground-img' style="background-image: url('images/case/sentinel.png');width: 50%;"></div>
-                    <input type="range" min="1" max="100" value="50" class="slider" name='slider' id="slider">
-                    <div class='slider-button'></div>
-                  </div>
-              </div>
+        <div class="container">
+          <h3 style="margin: 0.5em;">: Workflow</h3>
+        </div>
+        <div class="container">
+          <img src='images/case/rs-work-flow.svg' style='width:100%; border-radius: var(--border-radius-small);'>
+        </div>
+        <hr class="solid">
 
-              <div class="col-lg-4" style="margin-top: 3em;">
-                <h3 style="margin-left: 1em;">False Color Urban RGB Composite</h1>
-                <p style="margin-left: 2em;">
-                  Data Source: Sentinel-2
-                </p>
-                <p style="margin-left: 2em;">
-                  This composite is used to visualize urbanized areas more clearly. Vegetation is visible in shades of green, while urbanized areas are represented by white, grey, or purple. [<a target="_blank" href="https://custom-scripts.sentinel-hub.com/sentinel-2/false-color-urban-rgb/">1</a>]
-                </p>
-                <p style="margin-left: 2em;">
-                  The composite:
-                  [2.5 * B12, 2.5 * B11, 2.5 * B4]
-                </p>
-                <ul style="margin-left: 2em;">
-                  <li>Band 4 - Red	0.665 (µm)</li>
-                  <li>Band 11 - SWIR 1.610 (µm)</li>
-                  <li>Band 12 - SWIR 2.190 (µm)</li>
-                </ul>
-              </div>
+        <div class="container">
+          <h3 style="margin: 0.5em;">: Data : Source : Tech</h3>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6">
+              <ul>
+                <li>Satelite imagery (Sentinel-2)</li>
+                <li>Administrative boundaries</li>
+                <li>DEM</li>
+                <li>Infrastructure, POIs</li>
+                <li>Demographics</li>
+              </ul>
+              <ul>
+                <li><a href="https://apps.sentinel-hub.com/eo-browser">EO browser</a></li>
+                <li><a href="https://www.openstreetmap.org/">OpenStreetMap</a></li>
+                <li><a href="https://www.geoportalpraha.cz/en">Geoportal Prague</a></li>
+                <li><a href="https://developers.google.com/apis-explorer">Google API</a></li>
+              </ul>
+              <ul>
+                <li>desktop: QGIS, Photoshop</li>
+                <li>code: Python, JavaScript, HTML, CSS</li>
+                <li>API / Query modules: Places API (Google), OSMnx</li>
+              </ul>
+              <img src='images/case/osm-query.png' style='width:100%; margin-top: 0.8em; border-radius: var(--border-radius-small);'>
+            </div>
+            <div class="col-lg-6">
+              <img src='images/case/api-places.png' style='width:100%; border-radius: var(--border-radius-small);'>
+            </div>
+          </div>
+        </div>
+        <hr class="solid">
+
+        <div class="container">
+          <h3 style="margin: 0.5em;">: LULC Classification</h3>
+        </div>
+        <div class="container">
+          <div class="row">
+
+            <div class="col-lg-8">
+                <div class='container' id="container-slider">
+                  <div class='img background-img' style="background-image: url('images/case/remote-sensing.png');"></div>
+                  <div class='img foreground-img' style="background-image: url('images/case/sentinel.png');width: 50%;"></div>
+                  <input type="range" min="1" max="100" value="50" class="slider" name='slider' id="slider">
+                  <div class='slider-button'></div>
+                </div>
+            </div>
+
+            <div class="col-lg-4" style="margin-top: 3em;">
+              <h3 style="margin-left: 1em;">Supervised classification</h1>
+              <p style="margin-left: 2em;">
+                in remote sensing is a method of automatically categorizing pixels in a satellite or aerial image into different land cover or land use classes based on known training samples. It involves defining a set of sample classes, each with a known land cover or land use type, and using this information to train a classifier. The classifier is then applied to the entire image, using the training data to make predictions about the land cover or land use of each pixel in the image.
+              </p>
+              <p style="margin-left: 2em;">
+                <strong>False Color Urban RGB Composite:</strong> is used to visualize urbanized areas more clearly. Vegetation is visible in shades of green, while urbanized areas are represented by white, grey, or purple. [<a target="_blank" href="https://custom-scripts.sentinel-hub.com/sentinel-2/false-color-urban-rgb/">1</a>]
+              </p>
+              <ul style="margin-left: 2em;">
+                <li>Band 4 - Red	0.665 (µm)</li>
+                <li>Band 11 - SWIR 1.610 (µm)</li>
+                <li>Band 12 - SWIR 2.190 (µm)</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+        <hr class="solid">
+
+
+        <div class="container">
+          <h3 style="margin: 0.5em;">: MCDA</h3>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8">
+              <figure>
+                <img src='images/case/diagram.png' style='width:100%; border-radius: var(--border-radius-small);'>
+                <figcaption style="text-align: center;">Restricting factors: Urban, Water; Criteria: Slope, Schools, Stadiums, Transport</figcaption>
+              </figure>
+            </div>
+
+            <div class="col-lg-4" style="margin-top: 3em;">
+              <p style="margin-left: 2em;">
+                Multi-Criteria Decision Analysis (MCDA) is a systematic process for evaluating multiple options based on a set of criteria. The process involved clearly defining the decision problem and identifying the relevant criteria, which in this case were Urban areas, Water, Slope, Schools, Stadiums, and Transport. This data was then normalized to make it comparable, which was done by converting it into a standard format. The importance of each criteria was then assigned based on its significance to the decision problem. Final result was calculated using map algebra.
+              </p>
+
+              <h3 style="margin-left: 1em;">Heatmap (kernel density)</h1>
+              <p style="margin-left: 2em;">
+                A geospatial heatmap is a type of heatmap that is used to display data values on a geographical map. It is a way to represent the spatial distribution of data values by using different colors to represent different ranges of values. The heatmap provides a graphical representation of data values by using different colors to represent different ranges of values.
+              </p>
+
+              <h3 style="margin-left: 1em;">Raster normalization</h1>
+              <p style="margin-left: 2em;">
+                is a process used to standardize the values of a raster dataset. Normalization is applied to adjust the range of values in the raster data to a standard scale, making it easier to compare and perform mathematical operations with different raster datasets.
+                In raster normalization, the values of a raster image are transformed so that they fall within a specific range, such as 0 to 1 or -1 to 1. This is done by subtracting the minimum value of the raster dataset from each cell, and then dividing by the range, which is calculated as the difference between the maximum and minimum values.
+              </p>
+
+              <h3 style="margin-left: 1em;">Map algebra</h1>
+              <p style="margin-left: 2em;">
+                is a tool in geographic information systems (GIS) that allows for the integration of multiple data layers to make decisions. In a MCDA, map algebra is used to analyze multiple criteria, such as accessibility, water sources, and slopes, and to make a final decision on the best alternative. The process involves normalizing and weighting the criteria, combining them into a single map, evaluating alternatives, making a decision, and monitoring it. Map algebra makes the MCDA process more efficient and consistent.
+              </p>
 
             </div>
-        </div>
-        <div class="container">
+          </div>
+
           <div class="col-12">
               <div id="map-case"></div>
           </div>
+          <div class="container">
+            <div style="text-align: center;">
+              <input  type="range" id="sldOpacity" min="0", max="1", step="0.1" value="0.5">
+            </div>
+          </div>
+        </div>
+        <hr class="solid">
+
+        <div class="container">
+          <h3 style="margin: 0.5em;">: Site</h3>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8">
+              <p>Krč is a district in the south of Prague, located in Prague 4. It became part of the city in 1922. It has 23 560 inhabitants. It is home of one of the mmost famous football club - SK Sparta Krč</p>
+              <p>Krč is served by line C of the Prague Metro. Pankrác, Budějovická and Kačerov stations all have onward bus connections to Krč. The planned line D of the Prague Metro will pass through Krč</p>
+                <img src='images/case/site-detail.png' style='width:100%; border-radius: var(--border-radius-small);'>
+            </div>
+            <div class="col-lg-4">
+              <div style="margin-left: 1em;">
+                  <img src='images/case/demographics.png' style='width:80%; border-radius: var(--border-radius-small);'>
+                  <h4 style="margin-top: 2em";>Parcel price estimation</h4>
+                  <p>30 000 000 € (160 € / m2)</p>
+                  <img src='images/case/parcel-area.png' style='width:80%; border-radius: var(--border-radius-small);'>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12" style="margin-top:2em;">
+              <img src='images/case/3D_grey.jpg' style='width:100%; border-radius: var(--border-radius-small);'>
+            </div>
+          </div>
+        </div>
+        <hr class="solid">
+
+        <div class="container">
+          <h3 style="margin: 0.5em;">: To be imporved</h3>
+        </div>
+        <div class="container" style="margin-bottom: 5em;">
+          <h4 style="margin-top: 2em";>Remote-sensing techniques</h4>
+          <ul>
+            <li>Better resolution</li>
+            <li>Data pre-processing</li>
+            <li>More suiteble band combination</li>
+            <li>More sofisticated classification / segmantation</li>
+          </ul>
+          <img src='images/case/rs-improve.svg' style='width:100%;'>
+
+          <h4 style="margin-top: 2em";>Criteria</h4>
+            <ul>
+              <li>Urban development experties</li>
+              <li>Well-defined problem and relevant criteria</li>
+              <li>Quantifiable and measurable criteria</li>
+              <li>Accurate and up-to-date data</li>
+              <li>Stakeholder involvement</li>
+              <li>Systematic weighting method</li>
+              <li>Transparent methodology</li>
+              <li>Continuous monitoring and revision.</li>
+            </ul>
+          <h4 style="margin-top: 2em";>Web presentation</h4>
+            <ul>
+              <li>Use visual aids</li>
+              <li>Simplify data & use clear language</li>
+              <li>Choose the right format</li>
+              <li>Make use of interactivity</li>
+              <li>Use color effectively</li>
+              <li>Use responsive design</li>
+              <li>Test and iterate to improve presentation.</li>
+            </ul>
         </div>
 
         <footer class="site-footer">
@@ -182,5 +352,12 @@
         <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
         <script src="js/map-case.js"></script>
         <script src="js/tiles.js"></script>
+        <script>
+          $(document).ready(function(){
+            $('#sldOpacity').change(function() {
+                imageOverlay.setOpacity(this.value);
+              });
+          })
+        </script>
     </body>
 </html>
