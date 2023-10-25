@@ -24,14 +24,24 @@ var greyIcon = new L.Icon({
   shadowSize: [41, 25]
 });
 
+var blackIcon = new L.Icon({
+  iconUrl: 'images/map-marker-black.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+  iconSize: [25, 25],
+  iconAnchor: [12, 25],
+  popupAnchor: [1, -25],
+  shadowSize: [41, 25]
+});
+
 // var greenIcon = new LeafIcon({iconUrl: 'leaf-green.png'});
 // var greyIcon = new LeafIcon({iconUrl: 'leaf-grey.png'});
 
 var marker = L.marker([52.5200, 13.4050], {icon: greenIcon}).addTo(map).bindPopup("I live here. I love it here."); // Berlin
-var marker = L.marker([49.1951, 16.6068], {icon: greyIcon}).addTo(map).bindPopup("I am working here (remotely)."); // Brno
-var marker = L.marker([60.6749, 17.1413], {icon: greyIcon}).addTo(map).bindPopup("I have lived here for a year on my Erasmus."); // Gävle
-var marker = L.marker([50.0755, 14.4378], {icon: greyIcon}).addTo(map).bindPopup("I have lived, earned my Bachelor's and Master's degree, and worked here."); // Prague
-var marker = L.marker([49.4130, 14.6775], {icon: greyIcon}).addTo(map).bindPopup("I have studied here at high school."); // Tabor
+var marker = L.marker([48.3652, 10.8960], {icon: blackIcon}).addTo(map).bindPopup("I am working here (remotely) as a geospatial specialist in a data enginnering team at credium."); // Augsburg
+var marker = L.marker([49.1951, 16.6068], {icon: greyIcon}).addTo(map).bindPopup("I used to work here (remotely) as a junior programmer at SAFE TREES."); // Brno
+var marker = L.marker([60.6749, 17.1413], {icon: greyIcon}).addTo(map).bindPopup("I have lived here for a year during my Erasmus."); // Gävle
+var marker = L.marker([50.0755, 14.4378], {icon: greyIcon}).addTo(map).bindPopup("I have lived, earned my Bachelor's and Master's degree, and worked here as telecom/geospatial engineer at YUNGO."); // Prague
+var marker = L.marker([49.4130, 14.6775], {icon: greyIcon}).addTo(map).bindPopup("I studied here at the technical high school"); // Tabor
 var marker = L.marker([49.4509, 14.3600], {icon: greyIcon}).addTo(map).bindPopup("I was born here."); // Milevsko
 
 
@@ -48,5 +58,11 @@ var latlngs = [
     [49.1951, 16.6068],
     [52.5200, 13.4050],
     [50.0755, 14.4378],
+];
+var polyline = L.polyline(latlngs, {color: 'grey', dashArray: '1, 5', dashOffset: '40', opacity: 0.4}).addTo(map);
+
+var latlngs = [
+    [52.5200, 13.4050],
+    [48.3652, 10.8960],
 ];
 var polyline = L.polyline(latlngs, {color: 'grey', dashArray: '1, 5', dashOffset: '40', opacity: 0.4}).addTo(map);
